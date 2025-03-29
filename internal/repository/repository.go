@@ -7,22 +7,23 @@ import (
 )
 
 var (
-	//go:embed querys/queryInsertExpense.sql
+	//go:embed query/queryInsertExpense.sql
 	queryInsertExpense string
 )
 
-type RepositoryExpense struct {
+type ExpenseRepository struct {
 	db *sql.DB
 }
 
-type RepositoryExpenseInterface interface {
+type ExpenseRepositoryInterface interface {
+	InsertExpense(expenseDomain domain.Expense) error
 }
 
-func NewRepositoryExpense(db *sql.DB) *RepositoryExpense {
-	return &RepositoryExpense{db: db}
+func NewRepositoryExpense(db *sql.DB) *ExpenseRepository {
+	return &ExpenseRepository{db: db}
 }
 
-func (r *RepositoryExpense) InsertExpense(expenseDomain domain.Expense) error {
+func (r *ExpenseRepository) InsertExpense(expenseDomain domain.Expense) error {
 
 	_, err := r.db.Exec(queryInsertExpense, expenseDomain.DescriptionExpense, expenseDomain.QuantityInstallments, expenseDomain.ValueInstallments)
 	if err != nil {
