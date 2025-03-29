@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"Controle-Despesas/internal/domain"
 	"database/sql"
 	_ "embed"
 )
@@ -21,9 +22,9 @@ func NewRepositoryExpense(db *sql.DB) *RepositoryExpense {
 	return &RepositoryExpense{db: db}
 }
 
-func (r *RepositoryExpense) InsertExpense() error {
+func (r *RepositoryExpense) InsertExpense(expenseDomain domain.Expense) error {
 
-	_, err := r.db.Exec(queryInsertExpense)
+	_, err := r.db.Exec(queryInsertExpense, expenseDomain.DescriptionExpense, expenseDomain.QuantityInstallments, expenseDomain.ValueInstallments)
 	if err != nil {
 		return err
 	}
