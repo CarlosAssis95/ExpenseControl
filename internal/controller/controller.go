@@ -16,7 +16,7 @@ func SetExpenseRepository(e repository.ExpenseRepositoryInterface) {
 	expenseRepository = e
 }
 
-func InsertExpense(w http.ResponseWriter, r http.Request) {
+func InsertExpense(w http.ResponseWriter, r *http.Request) {
 
 	var expense domain.Expense
 	err := json.NewDecoder(r.Body).Decode(&expense)
@@ -37,5 +37,6 @@ func InsertExpense(w http.ResponseWriter, r http.Request) {
 		"expense": expense,
 	}
 
+	log.Println("Expense recorded successfully")
 	json.NewEncoder(w).Encode(response)
 }

@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	_ "github.com/lib/pq"
 	"log"
 	"sync"
 )
@@ -43,7 +44,8 @@ func initDatabase(config Config) (*Database, error) {
 		config.DBName,
 		config.Port,
 		config.ApplicationName,
-		config.SSLMode)
+		config.SSLMode,
+	)
 
 	db, err := sql.Open("postgres", ConnString)
 	if err != nil {

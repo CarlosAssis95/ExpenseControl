@@ -19,11 +19,11 @@ func Load() (*Config, error) {
 		Database: database.Config{
 			User:            os.Getenv("DB_USER"),
 			Host:            os.Getenv("DB_HOST"),
-			Password:        os.Getenv("DB_PASSWORD"),
+			Password:        os.Getenv("DB_PASS"),
 			DBName:          os.Getenv("DB_NAME"),
 			Port:            os.Getenv("DB_PORT"),
 			ApplicationName: os.Getenv("APPLICATION_NAME"),
-			SSLMode:         os.Getenv("DB_SSLMODE"),
+			SSLMode:         os.Getenv("DB_SSL_MODE"),
 		},
 	}, nil
 }
