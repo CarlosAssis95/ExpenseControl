@@ -37,6 +37,8 @@ func InsertExpense(w http.ResponseWriter, r *http.Request) {
 		"expense": expense,
 	}
 
-	log.Println("Expense recorded successfully")
-	json.NewEncoder(w).Encode(response)
+	if err != nil {
+		log.Println("Expense recorded successfully")
+		json.NewEncoder(w).Encode(response)
+	}
 }

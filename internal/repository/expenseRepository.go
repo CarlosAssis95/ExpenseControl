@@ -25,7 +25,12 @@ func NewRepositoryExpense(db *sql.DB) *ExpenseRepository {
 
 func (r *ExpenseRepository) InsertExpense(expenseDomain domain.Expense) error {
 
-	_, err := r.db.Exec(queryInsertExpense, expenseDomain.DescriptionExpense, expenseDomain.QuantityInstallments, expenseDomain.ValueInstallments)
+	_, err := r.db.Exec(
+		queryInsertExpense,
+		expenseDomain.DescriptionExpense,
+		expenseDomain.QuantityInstallments,
+		expenseDomain.ValueInstallments,
+		expenseDomain.DatePaymentExpense)
 	if err != nil {
 		return err
 	}
