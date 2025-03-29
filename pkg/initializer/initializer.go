@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func Boo() {
+func Boot() {
 
 	config, err := config2.Load()
 	if err != nil {
